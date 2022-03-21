@@ -68,14 +68,14 @@ public class CheckBlacklistTask implements BlackBETask {
                                 reasonStringBuilder.append(",QQ:").append(infoBean.getQQ());
                                 reasonStringBuilder.append(",XUID:").append(infoBean.getXUID());
                                 reasonStringBuilder.append(",\n    UUID:").append(infoBean.getUUID());
-                                reasonStringBuilder.append(",\n    违规信息:").append(infoBean.getInfo());
+                                reasonStringBuilder.append(",\n    违规信息:").append(new String(infoBean.getInfo().getBytes(), StandardCharsets.UTF_8));
                                 reasonStringBuilder.append("\n");
                             }
                         }
                         BlackBEKickPlayerEvent blackBEKickPlayerEvent = new BlackBEKickPlayerEvent(this.player, BlackBEKickPlayerEvent.Reason.IN_BLACKLIST, true);
                         Server.getInstance().getPluginManager().callEvent(blackBEKickPlayerEvent);
                         if (!blackBEKickPlayerEvent.isCancelled() && blackBEKickPlayerEvent.isAutoKick()) {
-                            BlackBEUtils.kickPlayer(this.player, reasonStringBuilder.toString(), "黑名单中玩家进服");
+                            BlackBEUtils.kickPlayer(this.player, reasonStringBuilder.toString(), reasonStringBuilder.toString());
                         }
                         BlackBEBanPlayerEvent blackBEBanPlayerEvent = new BlackBEBanPlayerEvent(this.player, true);
                         Server.getInstance().getPluginManager().callEvent(blackBEBanPlayerEvent);

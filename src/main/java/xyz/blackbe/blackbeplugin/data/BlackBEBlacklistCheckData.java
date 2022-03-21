@@ -84,7 +84,7 @@ public class BlackBEBlacklistCheckData extends BlackBEData {
             private String xuid;
             private String info;
             private Integer level;
-            private Integer qq;
+            private Long qq;
 
             public String getUUID() {
                 return uuid;
@@ -110,7 +110,7 @@ public class BlackBEBlacklistCheckData extends BlackBEData {
                 return level;
             }
 
-            public Integer getQQ() {
+            public Long getQQ() {
                 return qq;
             }
 

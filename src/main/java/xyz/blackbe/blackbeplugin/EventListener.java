@@ -5,7 +5,7 @@ import cn.nukkit.Server;
 import cn.nukkit.event.EventHandler;
 import cn.nukkit.event.EventPriority;
 import cn.nukkit.event.Listener;
-import cn.nukkit.event.player.PlayerJoinEvent;
+import cn.nukkit.event.player.PlayerLocallyInitializedEvent;
 import xyz.blackbe.blackbeplugin.data.BlackBEBlacklistCheckData;
 import xyz.blackbe.blackbeplugin.event.BlackBEKickPlayerEvent;
 import xyz.blackbe.blackbeplugin.task.CheckBlacklistTask;
@@ -17,7 +17,7 @@ import java.util.List;
 @SuppressWarnings({"DuplicatedCode", "unused"})
 public class EventListener implements Listener {
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
-    public void onJoin(PlayerJoinEvent event) {
+    public void onJoin(PlayerLocallyInitializedEvent event) {
         Player player = event.getPlayer();
         if (BlacklistCacheManager.isInBlacklist(player)) {
             BlackBEKickPlayerEvent blackBEKickPlayerEvent = new BlackBEKickPlayerEvent(player, BlackBEKickPlayerEvent.Reason.IN_BLACKLIST, true);
